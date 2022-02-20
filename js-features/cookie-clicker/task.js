@@ -4,25 +4,11 @@ const speed = document.getElementById("clicker__speed");
 
 let flag = 1;
 let count = 0;
-let date = new Date
-let clickSpeed = 1/speed.textContent;
+let startTime = 0;
 
 cookie.onclick = () => {
+    start = new Date();
     count += 1;
-    switch (flag) {
-        case 1:
-            cookie.width += 20
-            cookie.height += 20
-            break;
-        case 2:
-            cookie.width -= 20
-            cookie.height -= 20
-            break;
-    }
-    if (flag === 1) {
-        flag = 2;
-    } else {
-        flag = 1;
-    }
+    cookie.width = count % 2 ? 250 : 200;
     counter.textContent = count;
-};
+}
