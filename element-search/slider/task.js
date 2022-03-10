@@ -3,37 +3,47 @@ let next = document.querySelector(".slider__arrow_next");
 let sliders = document.getElementsByClassName("slider__item");
 let dots = document.getElementsByClassName("slider__dot");
 
-onload = function () {
-    sliders = Array.from(sliders);
-    for (let i = 0; i < sliders.length; i++) {
-        let active = sliders[i];
-        prev.onclick = function () {
-            if (active === sliders[0]) {
-                active.classList.remove("slider__item_active");
-                sliders[sliders.length - 1].classList.add("slider__item_active");
-            }
-            active.classList.remove("slider__item_active");
-            sliders[i -= 1].classList.add("slider__item_active");
-        }
-        next.onclick = function () {
-            if (active === sliders[sliders.length - 1]) {
-                active.classList.remove("slider__item_active");
-                active[0].classList.add("slider__item_active");
-            }
-            active.classList.remove("slider__item_active");
-            sliders[i += 1].classList.add("slider__item_active");
-        }
+sliders = Array.from(sliders);
+let current = sliders.findIndex(function (element) {
+    if (element.className === "slider__item slider__item_active") {
+        return element;
     }
+});
+
+onload = function () {
+    prev.onclick = function () {
+        prev = current - 1;
+        if (current === 0) {
+            prev = sliders.length - 1;
+        };
+        console.log(prev);
+        sliders[current].classList.remove("slider__item_active");
+        getSlide(sliders[prev]);
+        
+        current = prev;
+    }
+
+    next.onclick = function () {
+        next = current + 1;
+        if (current >= sliders.length - 1) {
+            next = 0;
+        };
+        console.log(next);
+        sliders[current].classList.remove("slider__item_active");
+        getSlide(sliders[next]);
+        current = next;
+    }
+
     for (let k = 0; k < dots.length; k++) {
         let clicked = dots[k];
         clicked.onclick = () => {
-            prevDot = document.querySelector(".slider__item_active")
-            prevDot.classList.remove("slider__item_active");
-            sliders[k].classList.add("slider__item_active");
-            
+            sliders[current].classList.remove("slider__item_active");
+            getSlide(sliders[k]);
+            current = k;
         }
     }
 }
 
-
-
+function getSlide(slide) {
+    slide.classList.add("slider__item_active");
+}
