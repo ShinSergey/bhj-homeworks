@@ -17,12 +17,16 @@ class Game {
   }
 
   registerEvents() {
-    let word;
-    if (this.currentSymbol !== event.key) {
-      this.fail();
-    } else {
-      this.success();
-    }
+    let letter = this.currentSymbol;
+    console.log(letter.textContent);
+    this.container.addEventListener("keydown", function(event) {
+      if (event.code === letter.textContent) {
+        this.success();
+      } else {
+        this.fail();
+      }
+    });
+    
       // В случае правильного ввода слова вызываем this.success()
       // При неправильном вводе символа - this.fail();
   }
