@@ -1,21 +1,24 @@
 let drops = document.querySelectorAll(".dropdown__value");
-let list = document.querySelector(".dropdown__list");
 let links = document.querySelectorAll(".dropdown__link");
 
 for (let k = 0; k < drops.length; k++) {
     let drop = drops[k];
-    drop.onclick = () => {
-        list.classList.toggle("dropdown__list_active");
+    drop.onclick = (event) => {
+        console.log(event.currentTarget.nextSibling.nextSibling);
+        event.currentTarget.nextSibling.nextSibling.classList.toggle("dropdown__list_active");
     }
 }
 
 for (let i = 0; i < links.length; i++) {
     let link = links[i];
-    link.onclick = () => {
+    link.onclick = (event) => {
         let newText = link.textContent;
-        list.classList.toggle("dropdown__list_active");
-        let closest = document.querySelector(".dropdown__value");
+        event.currentTarget.parentElement.parentElement.classList.toggle("dropdown__list_active");
+        let closest = event.currentTarget.parentElement.parentElement.previousElementSibling;
+        console.log(event.currentTarget.parentElement.parentElement.previousElementSibling);
         closest.textContent = newText;
         return false;
     }
 }
+
+// 111
