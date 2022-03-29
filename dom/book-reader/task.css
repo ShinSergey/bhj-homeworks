@@ -72,7 +72,12 @@ body {
   box-sizing: border-box;
 }
 
-.color_active {
+.tColor_active {
+  box-shadow: 0 0 5px white;
+  border: 1px solid gray;
+}
+
+.bgColor_active {
   box-shadow: 0 0 5px white;
   border: 1px solid gray;
 }
