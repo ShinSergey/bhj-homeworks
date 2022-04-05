@@ -39,17 +39,20 @@ function Changer(types, activeClass, attribute) {
             if (attribute === "data-text-color") {
                 if (atr === "black") {
                     if (book.classList.contains("book_color-gray" || "book_color-whitesmoke")) {
-                        book.classList.remove("book_color-gray" && "book_color-whitesmoke");
+                        book.classList.remove("book_color-gray");
+                        book.classList.remove("book_color-whitesmoke");
                     }
                     book.classList.add("book_color-black");
                 } else if (atr === "gray") {
                     if (book.classList.contains("book_color-whitesmoke" || "book_color-black")) {
-                        book.classList.remove("book_color-whitesmoke" && "book_color-black");
+                        book.classList.remove("book_color-whitesmoke");
+                        book.classList.remove("book_color-black");
                     }
                     book.classList.add("book_color-gray");
                 } else if (atr === "whitesmoke") {
                     if (book.classList.contains("book_color-gray" || "book_color-black")) {
-                        book.classList.remove("book_color-gray" && "book_color-black");
+                        book.classList.remove("book_color-gray");
+                        book.classList.remove("book_color-black");
                     }
                     book.classList.add("book_color-whitesmoke");
                 }
@@ -73,6 +76,7 @@ function Changer(types, activeClass, attribute) {
                     book.classList.add("book_bg-white");
                 }
             }
+            return false
         }
     }
 }
