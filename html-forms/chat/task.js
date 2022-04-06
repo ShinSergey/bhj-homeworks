@@ -7,7 +7,6 @@ sideWidget.onclick = () => {
 
 const widgetInput = document.querySelector(".chat-widget__input");
 const messages = document.querySelector('.chat-widget__messages');
-let messageText = document.querySelector(".message__text");
 
 widgetInput.addEventListener("keydown", (event) => {
     if (event.keyCode === 13 && widgetInput.value != 0) {
@@ -20,6 +19,8 @@ widgetInput.addEventListener("keydown", (event) => {
           </div>
         </div>
       `;
+      let messageText = document.querySelector(".message__text");
+      messageText.textContent = widgetInput.value;
       widgetInput.value = "";
     }
 });
