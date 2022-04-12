@@ -6,12 +6,13 @@ sideWidget.onclick = () => {
 }
 
 const widgetInput = document.querySelector(".chat-widget__input");
-const messages = document.querySelector('.chat-widget__messages');
+const chat = document.querySelector('.chat-widget__messages');
+const autoAnswers = []
 
 widgetInput.addEventListener("keydown", (event) => {
     if (event.keyCode === 13 && widgetInput.value != 0) {
       
-        messages.innerHTML += `
+      chat.innerHTML += `
         <div class="message message_client">
           <div class="message__time">09:21</div>
           <div class="message__text">
@@ -19,9 +20,20 @@ widgetInput.addEventListener("keydown", (event) => {
           </div>
         </div>
       `;
-      let messageText = document.querySelector(".message__text");
-      messageText.textContent = widgetInput.value;
+      let messages = document.getElementsByClassName("message__text");
+      let newMessage = messages.length - 1;
+      messages[newMessage].textContent = widgetInput.value;
+      let times = document.getElementsByClassName("message__time");
+      times[newMessage].textContent = new Date;
       widgetInput.value = "";
+      chat.innerHTML += `
+        <div class="message">
+          <div class="message__time">09:21</div>
+          <div class="message__text">
+          
+          </div>
+        </div>
+      `;
     }
 });
 
