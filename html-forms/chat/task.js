@@ -43,8 +43,9 @@ widgetInput.addEventListener("keydown", (event) => {
         </div>
       `;
     let newAuto = messages.length - 1;
-    messages[newAuto].textContent = "Вы живы?"
-    timeFormat(newAuto)
+    messages[newAuto].textContent = "Вы живы?";
+    timeFormat(newAuto);
+    chatScroll.scrollTop = chatScroll.scrollHeight;
   }, 30000);
   if (event.keyCode === 13 && widgetInput.value != 0) {
     chat.innerHTML += `
