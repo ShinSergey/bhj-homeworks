@@ -6,7 +6,7 @@ function checker(e) {
         let boxes = Array.from(childboxes);
         boxes.forEach(element => {
             let childbox = element.querySelector(".interest__check");
-            childbox.checked = !childbox.checked;
+            childbox.checked = e.checked;
             checker(childbox);
         });
     }
@@ -16,7 +16,7 @@ function checkerUp(e) {
     if (e.closest("ul").previousElementSibling.children) {
         let parentbox;
         parentbox = e.closest("ul").previousElementSibling.children;
-        parentbox[0].checked = !parentbox[0].checked;
+        parentbox[0].checked = e.checked;
         checkerUp(parentbox[0]);
     }
 }

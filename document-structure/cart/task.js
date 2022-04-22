@@ -31,12 +31,8 @@ function add(element) {
     let quantity = element.previousSibling.previousSibling.querySelector(".product__quantity-value").textContent;
     element.previousSibling.previousSibling.querySelector(".product__quantity-value").textContent = 1;
     let addedItems = Array.from(cart.getElementsByClassName("cart__product-image"));
-
     let addedItem = addedItems.find(function (element, index, array) {
-        if (element.src === img.src) {
-            return element;
-        }
-
+            return element.src === img.src;
     })
     if (addedItem) {
         let number1 = Number(addedItem.nextSibling.nextSibling.textContent);

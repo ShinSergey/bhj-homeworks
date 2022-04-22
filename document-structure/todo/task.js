@@ -6,34 +6,49 @@ let getTodo = localStorage.getItem("todo");
 let parsed = JSON.parse(getTodo);
 if (parsed) {
     parsed.forEach((element) => {
-        list.insertAdjacentHTML("afterBegin", element);
+        list.insertAdjacentHTML("afterBegin",
+            `<div class="task">
+          <div class="task__title">
+          ${element}
+          </div>
+          <a href="#" class="task__remove">&times;</a>
+        </div>`);
     })
 }
+
+list.addEventListener("click", (event) => {
+        if (event.target.classList.value === "task__remove") {
+            let toDelete = event.target.previousSibling.previousSibling.textContent;
+            let getTodo = localStorage.getItem("todo");
+            let parsed = JSON.parse(getTodo);
+            let index = parsed.indexOf(toDelete);
+            parsed.splice(index, 1);
+            localStorage.setItem('todo', JSON.stringify(parsed));
+            event.target.parentElement.remove();
+        }
+
+})
 
 function addToList() {
     list.insertAdjacentHTML("afterBegin",
         `<div class="task">
           <div class="task__title">
+          ${input.value}
           </div>
           <a href="#" class="task__remove">&times;</a>
         </div>`);
-    list.firstChild.firstChild.nextSibling.textContent = input.value;
     input.value = "";
-    list.firstChild.lastChild.previousSibling.addEventListener("click", (event) => {
-        event.currentTarget.parentElement.remove();
-    })
-    let tasks = Array.from(list.getElementsByClassName("task"));
+    let tasks = Array.from(list.getElementsByClassName("task__title"));
     todo = [];
-    localStorage.clear();
     tasks.forEach(element => {
-        todo.push(element.outerHTML);
+        todo.push(element.textContent);
         localStorage.setItem("todo", JSON.stringify(todo));
     });
 }
 
 button.onclick = () => {
-    input.value.trim();
-    if (input.value != "") {
+    let noGaps = input.value.trim();
+    if (noGaps != "") {
         addToList()
     }
     return false;
