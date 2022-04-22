@@ -30,6 +30,8 @@ getCurrency.addEventListener("readystatechange", () => {
   if (getCurrency.readyState === getCurrency.DONE) {
     if(items.innerHTML !== "") {
       items.innerHTML = "";
+    } else if (getCurrency.status >= 400) {
+      console.error(getCurrency.statusText);
     }
     let parsed = JSON.parse(getCurrency.responseText);
     let currencies = parsed.response.Valute;
