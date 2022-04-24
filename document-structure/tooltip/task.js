@@ -1,23 +1,25 @@
 const clickers = document.getElementsByClassName("has-tooltip");
 
 for (let e = 0; e < clickers.length; e++) {
-    clickers[e].insertAdjacentHTML("afterend", `<div class="tooltip" data-position="left">
+    clickers[e].insertAdjacentHTML("afterend", `<div class="tooltip">
     Текст подсказки
     </div>`);
     clickers[e].onclick = () => {
         let prompt = clickers[e].nextElementSibling;
         prompt.style.position = 'absolute';
-        let position = prompt.getAttribute("data-position");
+        let position = clickers[e].getAttribute("data-position");
         prompt.textContent = clickers[e].title;
         let active = document.querySelector(".tooltip_active");
-        if (active) {
+        if (active && active === prompt) {
             active.classList.remove("tooltip_active");
             return false;
+        } else if (active) {
+            active.classList.remove("tooltip_active");
         }
         prompt.classList.toggle("tooltip_active");
         if (position === "bottom") {
             prompt.style.left = clickers[e].getBoundingClientRect().left + "px"
-            prompt.style.top = (clickers[e].getBoundingClientRect().top + 10) + "px";
+            prompt.style.top = (clickers[e].getBoundingClientRect().top + 15) + "px";
         } else if (position === "top") {
             prompt.style.left = clickers[e].getBoundingClientRect().left + "px"
             prompt.style.top = (clickers[e].getBoundingClientRect().top - 30) + "px";
