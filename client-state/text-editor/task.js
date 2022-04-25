@@ -1,3 +1,4 @@
+const clear = document.getElementById("clear");
 const textarea = document.getElementById("editor");
 let text;
 const storedText = localStorage.getItem("text");
@@ -10,3 +11,8 @@ textarea.addEventListener("keydown", () => {
     console.log(text);
     localStorage.setItem("text", JSON.stringify(text));
 }); 
+
+clear.onclick = () => {
+    textarea.value = "";
+    localStorage.clear();
+}

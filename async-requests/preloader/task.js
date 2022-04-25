@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 const getCurrency = new XMLHttpRequest();
 getCurrency.open("GET", "https://netology-slow-rest.herokuapp.com");
 
@@ -11,7 +11,7 @@ getCurrency.addEventListener("readystatechange", () => {
             
         })
     }
-=======
+
 const items = document.getElementById("items");
 const loader = document.querySelector(".loader");
 const getCurrency = new XMLHttpRequest();
@@ -71,7 +71,6 @@ getCurrency.addEventListener("readystatechange", () => {
     });
     localStorage.setItem("currency", JSON.stringify(currency));
   }
->>>>>>> ce1c0e679051efd2abfda444c5e9024e6ff5339b
 })
 
 getCurrency.send();
