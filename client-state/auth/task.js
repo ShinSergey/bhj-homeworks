@@ -5,10 +5,10 @@ const form = document.getElementById("signin__form");
 const welc = document.getElementById("welcome");
 const login = document.getElementsByName("login");
 const password = document.getElementsByName("password");
+let activeUser = localStorage.getItem("active_user");
 
-if (localStorage.getItem("active_user")) {
+if (activeUser) {
     autorisation()
-    let activeUser = localStorage.getItem("active_user");
     document.getElementById("user_id").textContent = activeUser;
 }
 
@@ -20,16 +20,17 @@ function autorisation() {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const xhr = new XMLHttpRequest();
+    xhr.responseType = "json";
     xhr.addEventListener("readystatechange", () => {
         if (xhr.readyState === xhr.DONE) {
-            let parsed = JSON.parse(xhr.responseText);
-            if (parsed.success) {
+            if (xhr.response.success) {
                 autorisation()
-                localStorage.setItem("active_user", parsed.user_id);
+                localStorage.setItem("active_user", xhr.response.user_id);
+                activeUser = localStorage.getItem("active_user");
+                document.getElementById("user_id").textContent = activeUser;
             } else {
                 alert("Неверный логин/пароль");
-                login[0].value = "";
-                password[0].value = "";
+                form.reset();
             }
         }
     })

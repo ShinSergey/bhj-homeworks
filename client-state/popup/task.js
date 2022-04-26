@@ -7,8 +7,8 @@ close[0].onclick = function () {
     setCookie("popup", "closed");
 }
 
-let Cookie = getCookie("popup");
-if (Cookie === "closed") {
+let cookie = getCookie("popup");
+if (cookie === "closed") {
     subscribe.classList.remove("modal_active");
 }
 
